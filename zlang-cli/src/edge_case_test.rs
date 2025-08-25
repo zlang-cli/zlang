@@ -6,8 +6,8 @@ use std::path::Path;
 #[cfg(test)]
 mod edge_case_tests {
     use super::*;
-    use tempfile::tempdir;
     use rand::RngCore;
+    use tempfile::tempdir;
 
     fn setup_master_key(path: &Path) -> Key {
         let mut key_bytes = [0u8; 32];

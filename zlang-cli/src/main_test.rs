@@ -16,11 +16,14 @@ mod tests {
     fn test_encrypt_decrypt_integrity() {
         let key = test_key();
         let mut memory = Memory::default();
-        memory.items.insert("test1".to_string(), Note {
-            value: "value1".to_string(),
-            tags: vec!["tag1".to_string()],
-            timestamp: chrono::Utc::now(),
-        });
+        memory.items.insert(
+            "test1".to_string(),
+            Note {
+                value: "value1".to_string(),
+                tags: vec!["tag1".to_string()],
+                timestamp: chrono::Utc::now(),
+            },
+        );
         let encrypted = encrypt_memory(&memory, &key).expect("encryption failed");
         let decrypted = decrypt_memory(&encrypted, &key).expect("decryption failed");
         assert_eq!(memory.items["test1"].value, decrypted.items["test1"].value);
