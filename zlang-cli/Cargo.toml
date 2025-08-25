@@ -1,0 +1,19 @@
+[dev-dependencies]
+tempfile = "3"
+[package]
+name = "zlang-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+bincode = { workspace = true }
+chacha20poly1305 = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+base64 = { workspace = true }
+ureq = "2"
