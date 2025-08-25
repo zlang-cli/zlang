@@ -1,65 +1,149 @@
-# zlang
+# ZLang Project
 
-A command-line tool for working with Z Language.
+## Overview
 
-## Features
+**ZLang** is a project consisting of two main tools:
+- **ZLang CLI:** A secure, encrypted memory storage tool for personal notes, multi-user support, and audit logging.
+- **Z Language Tooling:** A command-line interface for running, compiling, and interacting with Z Language scripts.
 
-- Run Z Language scripts from the command line
-- Compile Z Language source files
-- Interactive REPL for Z Language
-- Lint and format Z Language code
+This README covers both components, with clear sections to help you get started depending on your needs.
 
-## How to Run
+---
 
-### Installation
+## ZLang CLI: Secure Encrypted Memory
 
-Clone the repository and build from source:
+### Features
+
+- Encrypted memory storage (ChaCha20Poly1305)
+- Onboarding, recovery, and audit logging
+- Search and tagging
+- Multi-user support
+- Undo/history, export/import
+- Optional network sync
+
+### Quickstart
+
+#### Installation
 
 ```sh
+# Download binary for your platform or build from source:
 git clone https://github.com/zlang-cli/zlang.git
 cd zlang
-# If using Rust:
-cargo build --release
-# If using Node.js:
-npm install
-npm run build
-# If using Go:
-go build -o zlang .
+cargo build --release     # Rust
+npm install && npm run build  # Node.js
+go build -o zlang .       # Go
 ```
+Move the binary to your desired location. (Optional: Copy `network.cfg` for network features.)
+
+#### Running the CLI
+
+```sh
+./zlang-cli.exe   # Windows
+./zlang-cli       # Linux/macOS
+```
+
+#### Interactive Menu
+
+```
+ZLang CLI Menu:
+1) Run onboarding
+2) Show memory summary
+3) Save a memory item (key/value/tags)
+4) Get a memory item (key)
+5) Search notes
+6) Show notes by tag
+7) Undo last operation
+8) Export memory
+9) Import memory
+10) Switch user profile
+11) Sync memory (network test)
+12) Exit
+```
+Type the menu number to select an option.
+
+#### Command-Line Usage
+
+```sh
+./zlang-cli onboard
+./zlang-cli save <key> <value>
+./zlang-cli get <key>
+./zlang-cli show
+./zlang-cli recover
+```
+
+#### Onboarding Workflow (Step-by-Step)
+
+```plaintext
++---------------------+
+|   Run Onboarding    |
++---------------------+
+         |
+         v
++------------------------------------+
+| Enter your name, language, network |
++------------------------------------+
+         |
+         v
++-----------------------------+
+| master.key, memory.bin,     |
+| recovery.json generated     |
++-----------------------------+
+         |
+         v
++-------------------+
+| Ready to use CLI! |
++-------------------+
+```
+
+#### Recovery
+
+1. If you lose access, use `recovery.json`.
+2. Run `./zlang-cli recover` or select menu option.
+3. Follow prompts to restore your account/memory.
+
+#### Multi-User & Profiles
+
+- Switch profiles with menu (`10) Switch user profile`)
+- Each user has separate encrypted memory/recovery files.
+
+#### Security Notes
+
+- Master key is never stored in plaintext
+- All files are encrypted
+- Audit logs do not contain sensitive data
+
+---
+
+## Z Language Tooling
+
+### Features
+
+- Run Z Language scripts from the command line
+- Compile Z Language files
+- Interactive REPL
+- Lint and format code
 
 ### Usage
 
-After building, run the CLI with:
-
 ```sh
+./zlang run script.zl
+./zlang compile source.zl
+./zlang repl
 ./zlang --help
-```
-
-#### Common Commands
-
-- Run a script:  
-  ```sh
-  ./zlang run script.zl
-  ```
-- Compile a file:  
-  ```sh
-  ./zlang compile source.zl
-  ```
-- Start REPL:  
-  ```sh
-  ./zlang repl
-  ```
-
-## Version
-
-Current version: **v1.0.0**
-
-Check your version with:
-
-```sh
 ./zlang --version
 ```
 
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+MIT OR Apache-2.0  
+See [LICENSE](LICENSE) for details.
+
+---
+
+For further details, see `USAGE.md` for onboarding and recovery workflow specifics.
